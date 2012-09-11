@@ -1,0 +1,7 @@
+*.dll
+*.dcu
+*.local
+*.identcache
+*.exe
+__history/
+Compiled/
