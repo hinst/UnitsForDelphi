@@ -16,6 +16,7 @@ type
     procedure UpdateMessage;
   public
     property VariableType: integer read fVariableType;
+    property VariableName: string read fVariableName;
   end;
 
 procedure AssertAssigned(const aPointer: pointer; const aVariableName: string;
@@ -28,6 +29,7 @@ begin
   inherited Create(aVariableName);
   fVariableType := aVariableType;
   fVariableName := aVariableName;
+  UpdateMessage;
 end;
 
 procedure AssertAssigned(const aPointer: pointer; const aVariableName: string;
@@ -39,7 +41,7 @@ end;
 
 procedure EUnassigned.UpdateMessage;
 begin
-
+  Message := 'Unassigned: "' + VariableName + '"; Type is ' + TVariableType.ToText(VariableType);
 end;
 
 end.

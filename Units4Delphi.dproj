@@ -51,6 +51,30 @@
       
       
       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       <Excluded_Packages Name="$(BDS)\bin\bcboffice2k100.bpl">CodeGear C++Builder Office 2000 Servers Package</Excluded_Packages>
       <Excluded_Packages Name="$(BDS)\bin\bcbofficexp100.bpl">CodeGear C++Builder Office XP Servers Package</Excluded_Packages>
       <Excluded_Packages Name="$(BDS)\bin\dcloffice2k100.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
@@ -62,9 +86,16 @@
     <DelphiCompile Include="Units4Delphi.dpk">
       <MainSource>MainSource</MainSource>
     </DelphiCompile>
+    <DCCReference Include="..\MMCSE\madBasic_.dcp" />
+    <DCCReference Include="..\MMCSE\madDisAsm_.dcp" />
+    <DCCReference Include="..\MMCSE\madExcept_.dcp" />
     <DCCReference Include="..\MMCSE\rtl.dcp" />
+    <DCCReference Include="..\MMCSE\vcl.dcp" />
+    <DCCReference Include="ExceptionTracer.pas" />
     <DCCReference Include="UAdditionalExceptions.pas" />
     <DCCReference Include="UAdditionalTypes.pas" />
     <DCCReference Include="UCustomThread.pas" />
+    <DCCReference Include="UStreamUtilities.pas" />
+    <DCCReference Include="WindowsPipes.pas" />
   </ItemGroup>
 </Project>

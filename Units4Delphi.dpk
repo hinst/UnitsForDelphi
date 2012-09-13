@@ -25,11 +25,18 @@ package Units4Delphi;
 {$IMPLICITBUILD ON}
 
 requires
-  rtl;
+  rtl,
+  madExcept_,
+  madDisAsm_,
+  madBasic_,
+  vcl;
 
 contains
   UCustomThread in 'UCustomThread.pas',
   UAdditionalExceptions in 'UAdditionalExceptions.pas',
-  UAdditionalTypes in 'UAdditionalTypes.pas';
+  UAdditionalTypes in 'UAdditionalTypes.pas',
+  ExceptionTracer in 'ExceptionTracer.pas',
+  UStreamUtilities in 'UStreamUtilities.pas',
+  WindowsPipes in 'WindowsPipes.pas';
 
 end.
