@@ -31,6 +31,7 @@ constructor TCommonPipe.Create(const aName: string);
 begin
   inherited Create;
   fName := aName;
+  fPipe := 0;
 end;
 
 function TCommonPipe.IsPipeOpened: boolean;

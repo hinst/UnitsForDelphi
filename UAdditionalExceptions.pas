@@ -22,6 +22,8 @@ type
 procedure AssertAssigned(const aPointer: pointer; const aVariableName: string;
   const aVariableType: integer);
 
+procedure AssertSuppressable(const e: Exception);
+
 implementation
 
 constructor EUnassigned.Create(const aVariableType: integer; const aVariableName: string);
@@ -32,6 +34,11 @@ begin
   UpdateMessage;
 end;
 
+procedure EUnassigned.UpdateMessage;
+begin
+  Message := 'Unassigned: "' + VariableName + '"; Type is ' + TVariableType.ToText(VariableType);
+end;
+
 procedure AssertAssigned(const aPointer: pointer; const aVariableName: string;
   const aVariableType: integer);
 begin
@@ -39,9 +46,10 @@ begin
     raise EUnassigned.Create(aVariableType, aVariableName);
 end;
 
-procedure EUnassigned.UpdateMessage;
+procedure AssertSuppressable(const e: Exception);
 begin
-  Message := 'Unassigned: "' + VariableName + '"; Type is ' + TVariableType.ToText(VariableType);
+  if e is EOutOfMemory then
+    raise e;
 end;
 
 end.
