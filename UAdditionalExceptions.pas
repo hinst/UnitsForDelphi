@@ -48,7 +48,7 @@ end;
 
 procedure AssertSuppressable(const e: Exception);
 begin
-  if e is EOutOfMemory then
+  if (e is EOutOfMemory) or (e is EAccessViolation) then
     raise e;
 end;
 

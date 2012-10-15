@@ -15,6 +15,8 @@ type
   TCustomThread = class(TThread)
   public
     constructor Create; virtual;
+  public type
+    EDontTerminate = class(Exception);
   private
     fOnExecute: TCustomThreadExecuteEvent;
     fOnException: TCustomThreadExceptionEvent;
@@ -25,6 +27,7 @@ type
     property OnExecute: TCustomThreadExecuteEvent read fOnExecute write fOnExecute;
     property OnException: TCustomThreadExceptionEvent read fOnException write fOnException;
     property Stop: boolean read fStop write fStop;
+    procedure Terminate;
     destructor Destroy; override;
   end;
 
@@ -36,11 +39,6 @@ begin
   OnExecute := nil;
   OnException := nil;
   Stop := false;
-end;
-
-destructor TCustomThread.Destroy;
-begin
-  inherited;
 end;
 
 procedure TCustomThread.Execute;
@@ -55,7 +53,16 @@ begin
         OnException(self, e);
     end;
   end;
-  inherited;
+end;
+
+procedure TCustomThread.Terminate;
+begin
+  raise EDontTerminate.Create('Use Stop := true instead');
+end;
+
+destructor TCustomThread.Destroy;
+begin
+  inherited Destroy;
 end;
 
 end.

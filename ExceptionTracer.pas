@@ -19,6 +19,7 @@ uses
   ;
 
 function GetExceptionInfo(const e: Exception): string;
+function GetStackTraceText: string;
 
 implementation
 
@@ -35,10 +36,19 @@ begin
       result := result + sLineBreak + '~~~Thread stack trace:~~~' + sLineBreak + GetThreadStackTrace;
     {$ENDIF}
   {$ENDIF}
-  
+
   {$IFDEF USE_NICE_EXCEPTIONS}
     result := GetFullExceptionInfo(e);
   {$ENDIF}
+end;
+
+function GetStackTraceText: string;
+begin
+  result := '~~~Stack trace~~~';
+  {$IFDEF USE_MAD_EXCEPT}
+    result := result + sLineBreak + GetThreadStackTrace;
+  {$ENDIF}
+  result := result + sLineBreak + '(end~of~stack~trace)';
 end;
 
 end.

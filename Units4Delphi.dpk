@@ -26,9 +26,6 @@ package Units4Delphi;
 
 requires
   rtl,
-  madExcept_,
-  madDisAsm_,
-  madBasic_,
   vcl;
 
 contains
@@ -37,6 +34,9 @@ contains
   UAdditionalTypes in 'UAdditionalTypes.pas',
   ExceptionTracer in 'ExceptionTracer.pas',
   UStreamUtilities in 'UStreamUtilities.pas',
-  WindowsPipes in 'WindowsPipes.pas';
+  WindowsPipes in 'WindowsPipes.pas',
+  UEnhancedObject in 'UEnhancedObject.pas',
+  UAdvancedToolBar in 'UAdvancedToolBar.pas',
+  UWindowsOverlappedEvent in 'UWindowsOverlappedEvent.pas';
 
 end.
