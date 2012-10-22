@@ -37,6 +37,9 @@ contains
   WindowsPipes in 'WindowsPipes.pas',
   UEnhancedObject in 'UEnhancedObject.pas',
   UAdvancedToolBar in 'UAdvancedToolBar.pas',
-  UWindowsOverlappedEvent in 'UWindowsOverlappedEvent.pas';
+  UWindowsOverlappedEvent in 'UWindowsOverlappedEvent.pas',
+  UTextUtilities in 'UTextUtilities.pas',
+  UMath in 'UMath.pas',
+  ULockThis in 'ULockThis.pas';
 
 end.

@@ -27,6 +27,7 @@ type
     property OnExecute: TCustomThreadExecuteEvent read fOnExecute write fOnExecute;
     property OnException: TCustomThreadExceptionEvent read fOnException write fOnException;
     property Stop: boolean read fStop write fStop;
+    procedure Synchronize(const aMethod: TThreadMethod);
     procedure Terminate;
     destructor Destroy; override;
   end;
@@ -53,6 +54,11 @@ begin
         OnException(self, e);
     end;
   end;
+end;
+
+procedure TCustomThread.Synchronize(const aMethod: TThreadMethod);
+begin
+  inherited Synchronize(aMethod);
 end;
 
 procedure TCustomThread.Terminate;
