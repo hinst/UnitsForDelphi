@@ -2,14 +2,15 @@ unit UMath;
 
 interface
 
-procedure ApproachSingle(var aMoveThis: single; const aMoveHere, aDelta: single);
+function ApproachSingle(var aMoveThis: single; const aMoveHere, aDelta: single): boolean;
 
 implementation
 
-procedure ApproachSingle(var aMoveThis: single; const aMoveHere, aDelta: single);
+function ApproachSingle(var aMoveThis: single; const aMoveHere, aDelta: single): boolean;
 begin
+  result := aMoveThis = aMoveHere;
   // BLOCK =
-  if aMoveThis = aMoveHere then
+  if result then
     exit;
 
   // BLOCK . < x
