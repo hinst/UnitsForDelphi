@@ -16,7 +16,7 @@ type
   public
     property LockReferenceCount: TCriticalSection read fLockReferenceCount;
     property ReferenceCount: integer read fReferenceCount;
-    function Refererence: integer;
+    function Reference: integer;
     function Dereference: integer;
     procedure Assign(const aSource: TEnhancedObject); virtual; abstract;
     destructor Destroy; override;
@@ -33,7 +33,7 @@ begin
   fReferenceCount := 0;
 end;
 
-function TEnhancedObject.Refererence: integer;
+function TEnhancedObject.Reference: integer;
 begin
   LockReferenceCount.Enter;
   fReferenceCount := fReferenceCount + 1;

@@ -40,6 +40,7 @@ contains
   UWindowsOverlappedEvent in 'UWindowsOverlappedEvent.pas',
   UTextUtilities in 'UTextUtilities.pas',
   UMath in 'UMath.pas',
-  ULockThis in 'ULockThis.pas';
+  ULockThis in 'ULockThis.pas',
+  UWindowsTempFile in 'UWindowsTempFile.pas';
 
 end.

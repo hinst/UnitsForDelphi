@@ -3,9 +3,11 @@ unit UTextUtilities;
 interface
 
 uses
-  SysUtils, Types;
+  SysUtils,
+  Types;
 
 function PointerToText(const aPointer: pointer): string;
+
 
 implementation
 

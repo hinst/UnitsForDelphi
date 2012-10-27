@@ -4,6 +4,9 @@ interface
 
 function ApproachSingle(var aMoveThis: single; const aMoveHere, aDelta: single): boolean;
 
+function RandomInteger(const aMin, aMax: integer): integer;
+
+
 implementation
 
 function ApproachSingle(var aMoveThis: single; const aMoveHere, aDelta: single): boolean;
@@ -29,6 +32,11 @@ begin
       aMoveThis := aMoveHere;
   end;
 
+end;
+
+function RandomInteger(const aMin, aMax: integer): integer;
+begin
+  result := random(aMax - aMin + 1) + aMin;
 end;
 
 end.
