@@ -41,6 +41,7 @@ contains
   UTextUtilities in 'UTextUtilities.pas',
   UMath in 'UMath.pas',
   ULockThis in 'ULockThis.pas',
-  UWindowsTempFile in 'UWindowsTempFile.pas';
+  UWindowsTempFile in 'UWindowsTempFile.pas',
+  UAdvancedByte in 'UAdvancedByte.pas';
 
 end.

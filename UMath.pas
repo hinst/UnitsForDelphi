@@ -47,6 +47,7 @@ function GetBit(const aByte: byte; const aIndex: byte): boolean;
 var
   mask: byte;
 begin
+  mask := 1 shl aIndex;
   result := (aByte and mask) <> 0;
 end;
 
@@ -54,7 +55,7 @@ function SetBit(var aByte: byte; const aIndex: byte; const aValue: boolean): boo
 var
   mask: byte;
 begin
-  result := (0 <= aIndex) and (aIndex < 8);
+  result := aIndex < 8;
   if not result then
     exit;
   mask := 1 shl aIndex;

@@ -38,11 +38,12 @@
     <DelphiCompile Include="Units4Delphi.dpk">
       <MainSource>MainSource</MainSource>
     </DelphiCompile>
-    <DCCReference Include="..\MMCSE\rtl.dcp" />
-    <DCCReference Include="..\MMCSE\vcl.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\rtl.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\vcl.dcp" />
     <DCCReference Include="ExceptionTracer.pas" />
     <DCCReference Include="UAdditionalExceptions.pas" />
     <DCCReference Include="UAdditionalTypes.pas" />
+    <DCCReference Include="UAdvancedByte.pas" />
     <DCCReference Include="UAdvancedToolBar.pas" />
     <DCCReference Include="UCustomThread.pas" />
     <DCCReference Include="UEnhancedObject.pas" />

@@ -1,4 +1,4 @@
-unit UAdditionalExceptions;
+﻿unit UAdditionalExceptions;
 
 interface
 
@@ -24,12 +24,13 @@ type
 
   EErroneousSequentIndex = class(EErroneousIndex)
   public
-    constructor Create(const aMin, aMax: integer);
+    constructor Create(const aMin, aSpecified, aMax: integer);
   protected
-    fMin, fMax: integer;
+    fMin, fSpecified, fMax: integer;
     procedure UpdateMessage;
   public
     property Min: integer read fMin;
+    property Specified: integer read fSpecified;
     property Max: integer read fMax;
   end;
 
@@ -56,18 +57,20 @@ begin
 end;
 
 
-constructor EErroneousSequentIndex.Create(const aMin, aMax: integer);
+constructor EErroneousSequentIndex.Create(const aMin, aSpecified, aMax: integer);
 begin
   inherited Create('');
   fMin := aMin;
+  fSpecified := aSpecified;
   fMax := aMax;
   UpdateMessage;
 end;
 
 procedure EErroneousSequentIndex.UpdateMessage;
 begin
-  Message := 'Erroneous index: possible indixes are: '
-    + '[' + IntToStr(Min) + '..' + IntToStr(Max) + ']';
+  Message := 'Erroneous index specified: possible indixes are: '
+    + '[' + IntToStr(Min) + '..' + IntToStr(Max) + ']; '
+    + 'specified index is: ' + IntToStr(Specified);
 end;
 
 
@@ -85,9 +88,12 @@ begin
 end;
 
 procedure AssertIndex(const aMin, aIndex, aMax: integer);
+var
+  correct: boolean;
 begin
-  if not ((aMin <= aIndex) and (aMax <= aIndex)) then
-    raise EErroneousSequentIndex.Create(aMin, aMax);
+  correct := (aMin <= aIndex) and (aIndex <= aMax);
+  if not correct then
+    raise EErroneousSequentIndex.Create(aMin, aIndex, aMax);
 end;
 
 end.

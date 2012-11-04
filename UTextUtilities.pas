@@ -8,7 +8,7 @@ uses
 
 function PointerToText(const aPointer: pointer): string;
 
-function ExcludeEnding(var aText: string; const aEnding: string): boolean; 
+function ExcludeEnding(var aText: string; const aEnding: string): boolean;
 
 
 implementation
