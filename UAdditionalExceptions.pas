@@ -35,9 +35,9 @@ type
   end;
 
 procedure AssertAssigned(const aPointer: pointer; const aVariableName: string;
-  const aVariableType: integer);
+  const aVariableType: integer); inline;
 
-procedure AssertSuppressable(const e: Exception);
+procedure AssertSuppressable(const e: Exception); inline;
 
 procedure AssertIndex(const aMin, aIndex, aMax: integer);
 
@@ -53,7 +53,7 @@ end;
 
 procedure EUnassigned.UpdateMessage;
 begin
-  Message := 'Unassigned: "' + VariableName + '"; Type is ' + TVariableType.ToText(VariableType);
+  Message := 'Unassigned: "' + VariableName + '"; type is ' + TVariableType.ToText(VariableType);
 end;
 
 

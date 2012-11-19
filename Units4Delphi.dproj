@@ -21,6 +21,10 @@
     <DCC_ObjOutput>Compiled</DCC_ObjOutput>
     <DCC_HppOutput>Compiled</DCC_HppOutput>
     <DCC_DcpOutput>Compiled</DCC_DcpOutput>
+    <DCC_UnitSearchPath>;$(BDS)\Source\DUnit\src</DCC_UnitSearchPath>
+    <DCC_ResourcePath>;$(BDS)\Source\DUnit\src</DCC_ResourcePath>
+    <DCC_ObjPath>;$(BDS)\Source\DUnit\src</DCC_ObjPath>
+    <DCC_IncludePath>;$(BDS)\Source\DUnit\src</DCC_IncludePath>
   </PropertyGroup>
   <ProjectExtensions>
     <Borland.Personality>Delphi.Personality</Borland.Personality>
@@ -38,21 +42,31 @@
     <DelphiCompile Include="Units4Delphi.dpk">
       <MainSource>MainSource</MainSource>
     </DelphiCompile>
-    <DCCReference Include="$(SystemRoot)\system32\rtl.dcp" />
-    <DCCReference Include="$(SystemRoot)\system32\vcl.dcp" />
-    <DCCReference Include="ExceptionTracer.pas" />
+    <DCCReference Include="..\LogLibraryForDelphi\LogViewer\Jcl.dcp" />
+    <DCCReference Include="..\LogLibraryForDelphi\LogViewer\JclContainers.dcp" />
+    <DCCReference Include="..\LogLibraryForDelphi\LogViewer\madBasic_.dcp" />
+    <DCCReference Include="..\LogLibraryForDelphi\LogViewer\madDisAsm_.dcp" />
+    <DCCReference Include="..\LogLibraryForDelphi\LogViewer\madExcept_.dcp" />
+    <DCCReference Include="..\LogLibraryForDelphi\LogViewer\rtl.dcp" />
+    <DCCReference Include="..\LogLibraryForDelphi\LogViewer\vcl.dcp" />
     <DCCReference Include="UAdditionalExceptions.pas" />
     <DCCReference Include="UAdditionalTypes.pas" />
     <DCCReference Include="UAdvancedByte.pas" />
     <DCCReference Include="UAdvancedToolBar.pas" />
     <DCCReference Include="UCustomThread.pas" />
     <DCCReference Include="UEnhancedObject.pas" />
+    <DCCReference Include="UEnvironment.pas" />
+    <DCCReference Include="UExceptionTracer.pas" />
+    <DCCReference Include="UFileNameCycler.pas" />
     <DCCReference Include="ULockThis.pas" />
     <DCCReference Include="UMath.pas" />
+    <DCCReference Include="UPaintEx.pas" />
     <DCCReference Include="UStreamUtilities.pas" />
     <DCCReference Include="UTextUtilities.pas" />
+    <DCCReference Include="UVCL.pas" />
+    <DCCReference Include="UVCLTextBoxPaint.pas" />
     <DCCReference Include="UWindowsOverlappedEvent.pas" />
+    <DCCReference Include="UWindowsPipes.pas" />
     <DCCReference Include="UWindowsTempFile.pas" />
-    <DCCReference Include="WindowsPipes.pas" />
   </ItemGroup>
 </Project>

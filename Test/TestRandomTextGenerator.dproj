@@ -1,12 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{66d07574-5f81-4a20-9268-d282f5575802}</ProjectGuid>
+    <ProjectGuid>{749e0053-e55f-4f4f-925e-0f54f6128b4f}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-    <DCC_DependencyCheckOutputName>TestAdvancedByte.exe</DCC_DependencyCheckOutputName>
-    <MainSource>TestAdvancedByte.dpr</MainSource>
+    <DCC_DependencyCheckOutputName>TestRandomTextGenerator.exe</DCC_DependencyCheckOutputName>
+    <MainSource>TestRandomTextGenerator.dpr</MainSource>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Version>7.0</Version>
@@ -18,16 +17,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <Version>7.0</Version>
     <DCC_Define>DEBUG</DCC_Define>
-    <DCC_UnitSearchPath>$(HDELPHIUNITSLIBRARY)</DCC_UnitSearchPath>
-    <DCC_ResourcePath>$(HDELPHIUNITSLIBRARY)</DCC_ResourcePath>
-    <DCC_ObjPath>$(HDELPHIUNITSLIBRARY)</DCC_ObjPath>
-    <DCC_IncludePath>$(HDELPHIUNITSLIBRARY)</DCC_IncludePath>
   </PropertyGroup>
   <ProjectExtensions>
     <Borland.Personality>Delphi.Personality</Borland.Personality>
     <Borland.ProjectType />
     <BorlandProject>
-<BorlandProject> <Delphi.Personality>   <Parameters>
+<BorlandProject xmlns=""> <Delphi.Personality>   <Parameters>
       <Parameters Name="UseLauncher">False</Parameters>
       <Parameters Name="LoadAllSymbols">True</Parameters>
       <Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
@@ -60,13 +55,13 @@
       <VersionInfoKeys Name="Comments"></VersionInfoKeys>
     </VersionInfoKeys>
     <Source>
-      <Source Name="MainSource">TestAdvancedByte.dpr</Source>
+      <Source Name="MainSource">TestRandomTextGenerator.dpr</Source>
     </Source>
   </Delphi.Personality> </BorlandProject></BorlandProject>
   </ProjectExtensions>
   <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
   <ItemGroup>
-    <DelphiCompile Include="TestAdvancedByte.dpr">
+    <DelphiCompile Include="TestRandomTextGenerator.dpr">
       <MainSource>MainSource</MainSource>
     </DelphiCompile>
   </ItemGroup>

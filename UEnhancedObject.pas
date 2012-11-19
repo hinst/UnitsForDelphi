@@ -18,9 +18,14 @@ type
     property ReferenceCount: integer read fReferenceCount;
     function Reference: integer;
     function Dereference: integer;
-    procedure Assign(const aSource: TEnhancedObject); virtual; abstract;
+      // no virtual
+    function AssignReference(const aReference: TEnhancedObject): boolean; overload;
+      // a := b
+    class function AssignReference(var a; const b: TEnhancedObject)
+      : boolean; overload;
     destructor Destroy; override;
   end;
+
 
 function DereferenceAndNil(var aObject): integer;
 
@@ -49,6 +54,23 @@ begin
   result := fReferenceCount;
   if fReferenceCount <= 0 then
     Free;
+end;
+
+function TEnhancedObject.AssignReference(const aReference: TEnhancedObject): boolean;
+begin
+  result := AssignReference(self, aReference);
+end;
+
+class function TEnhancedObject.AssignReference(var a;
+  const b: TEnhancedObject): boolean;
+begin
+  if pointer(a) <> nil then
+    if TObject(a) is TEnhancedObject then
+      (TObject(a) as TEnhancedObject).Dereference;
+  pointer(a) := b;
+  if b <> nil then
+    b.Reference;
+  result := b <> nil;
 end;
 
 destructor TEnhancedObject.Destroy;

@@ -7,7 +7,7 @@ uses
   SyncObjs,
   JclSortedMaps;
 
-procedure LockPointer(const aPointer: pointer);
+procedure LockPointer(const aPointer: pointer); 
 
 function UnlockPointer(const aPointer: pointer): boolean;
 
@@ -19,6 +19,8 @@ var
 
 procedure LockPointer(const aPointer: pointer);
 begin
+  if aPointer = nil then
+    exit;
   if not globalLocks.ContainsKey(aPointer) then
     globalLocks.PutValue(aPointer, TCriticalSection.Create);
   TCriticalSection(globalLocks.GetValue(aPointer)).Enter;
@@ -26,6 +28,11 @@ end;
 
 function UnlockPointer(const aPointer: pointer): boolean;
 begin
+  if aPointer = nil then
+  begin
+    result := false;
+    exit;
+  end;
   result := globalLocks.ContainsKey(aPointer);
   if result then
     TCriticalSection(globalLocks.GetValue(aPointer)).Leave;

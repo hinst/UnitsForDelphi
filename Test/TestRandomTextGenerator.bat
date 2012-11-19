@@ -1,0 +1,2 @@
+TestRandomTextGenerator.exe
+pause

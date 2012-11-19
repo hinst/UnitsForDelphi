@@ -1,4 +1,4 @@
-unit WindowsPipes;
+unit UWindowsPipes;
 
 interface
 

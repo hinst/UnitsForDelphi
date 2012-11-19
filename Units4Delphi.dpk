@@ -26,15 +26,20 @@ package Units4Delphi;
 
 requires
   rtl,
-  vcl;
+  vcl,
+  madBasic_,
+  madDisAsm_,
+  madExcept_,
+  JclContainers,
+  Jcl;
 
 contains
   UCustomThread in 'UCustomThread.pas',
   UAdditionalExceptions in 'UAdditionalExceptions.pas',
   UAdditionalTypes in 'UAdditionalTypes.pas',
-  ExceptionTracer in 'ExceptionTracer.pas',
+  UExceptionTracer in 'UExceptionTracer.pas',
   UStreamUtilities in 'UStreamUtilities.pas',
-  WindowsPipes in 'WindowsPipes.pas',
+  UWindowsPipes in 'UWindowsPipes.pas',
   UEnhancedObject in 'UEnhancedObject.pas',
   UAdvancedToolBar in 'UAdvancedToolBar.pas',
   UWindowsOverlappedEvent in 'UWindowsOverlappedEvent.pas',
@@ -42,6 +47,11 @@ contains
   UMath in 'UMath.pas',
   ULockThis in 'ULockThis.pas',
   UWindowsTempFile in 'UWindowsTempFile.pas',
-  UAdvancedByte in 'UAdvancedByte.pas';
+  UAdvancedByte in 'UAdvancedByte.pas',
+  UFileNameCycler in 'UFileNameCycler.pas',
+  UEnvironment in 'UEnvironment.pas',
+  UVCL in 'UVCL.pas',
+  UVCLTextBoxPaint in 'UVCLTextBoxPaint.pas',
+  UPaintEx in 'UPaintEx.pas';
 
 end.

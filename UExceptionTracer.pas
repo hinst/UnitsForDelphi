@@ -1,4 +1,4 @@
-unit ExceptionTracer;
+unit UExceptionTracer;
 
 {$DEFINE USE_MAD_EXCEPT}
 { $DEFINE INCLUDE_THREAD_STACK_TRACE} // takes effect only when USE_MAD_EXCEPT defined
