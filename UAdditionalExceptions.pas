@@ -8,6 +8,21 @@ uses
   UAdditionalTypes;
 
 type
+
+  EWrongClass = class(Exception)
+  public
+    constructor Create(const aActualClass, aDesiredClass: TClass);
+  protected
+    FActualClass, FDesiredClass: TClass;
+    procedure UpdateMessage;
+  public type
+    TNilObject = class(TObject)
+    end;
+  public
+    property ActualClass: TClass read FActualClass;
+    property DesiredClass: TClass read FDesiredClass;
+  end;
+
   EUnassigned = class(Exception)
   public
     constructor Create(const aVariableType: integer; const aVariableName: string);
@@ -34,6 +49,20 @@ type
     property Max: integer read fMax;
   end;
 
+  EDuplicate = class(Exception);
+
+  EDuplicateClass = class(Exception)
+  public
+    constructor Create(const aClass: TClass);
+  protected
+    FClass: TClass;
+    procedure UpdateMessage;
+  property
+    Duplicate: TClass read FClass;
+  end;
+
+procedure AssertType(const aObject: TObject; const aType: TClass);
+
 procedure AssertAssigned(const aPointer: pointer; const aVariableName: string;
   const aVariableType: integer); inline;
 
@@ -41,7 +70,24 @@ procedure AssertSuppressable(const e: Exception); inline;
 
 procedure AssertIndex(const aMin, aIndex, aMax: integer);
 
+procedure TryFreeAndNil(var obj);
+
 implementation
+
+constructor EWrongClass.Create(const aActualClass, aDesiredClass: TClass);
+begin
+  inherited Create('');
+  FActualClass := aActualClass;
+  FDesiredClass := aDesiredClass;
+  UpdateMessage;
+end;
+
+procedure EWrongClass.UpdateMessage;
+begin
+  Message := 'Wrong class: '
+      + 'actual class: ' + ActualClass.ClassName + '; '
+      + 'desired class: ' + DesiredClass.ClassName;
+end;
 
 constructor EUnassigned.Create(const aVariableType: integer; const aVariableName: string);
 begin
@@ -73,6 +119,26 @@ begin
     + 'specified index is: ' + IntToStr(Specified);
 end;
 
+constructor EDuplicateClass.Create(const aClass: TClass);
+begin
+  inherited Create('');
+  FClass := aClass;
+  UpdateMessage;
+end;
+
+procedure EDuplicateClass.UpdateMessage;
+begin
+  Message := 'Duplicate class: ' + Duplicate.ClassName;
+end;
+
+
+procedure AssertType(const aObject: TObject; const aType: TClass);
+begin
+  if not Assigned(aObject) then
+    raise EWrongClass.Create(EWrongClass.TNilObject, aType);
+  if not (aObject is aType) then
+    raise EWrongClass.Create(aObject.ClassType, aType);
+end;
 
 procedure AssertAssigned(const aPointer: pointer; const aVariableName: string;
   const aVariableType: integer);
@@ -96,4 +162,15 @@ begin
     raise EErroneousSequentIndex.Create(aMin, aIndex, aMax);
 end;
 
+procedure TryFreeAndNil(var obj);
+begin
+  FreeAndNil(obj);
+end;
+
 end.
+
+
+
+
+
+
