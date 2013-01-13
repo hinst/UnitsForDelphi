@@ -93,7 +93,6 @@ function TWindowsOverlappedEvent.Wait(const aTime: DWORD): boolean;
 var
   waitResult: DWORD;
 begin
-  result := false;
   Assert(Event > 0);
   waitResult := WaitForSingleObject(Event, aTime);
   if waitResult = WAIT_ABANDONED then

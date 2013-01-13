@@ -58,7 +58,6 @@ end;
 
 function CreateBitmapFromIcon(const aIcon: TIcon): TBitmap;
 begin
-  result := nil;
   AssertAssigned(aIcon, 'aIcon', TVariableType.Argument);
   result := TBitmap.Create;
   result.Width := aIcon.Width;
