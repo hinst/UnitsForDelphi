@@ -19,6 +19,7 @@ uses
   ;
 
 function GetExceptionInfo(const e: Exception): string;
+function GetExceptionBrief(const aException: Exception): string;
 function GetStackTraceText: string;
 
 implementation
@@ -40,6 +41,18 @@ begin
   {$IFDEF USE_NICE_EXCEPTIONS}
     result := GetFullExceptionInfo(e);
   {$ENDIF}
+end;
+
+function GetExceptionBrief(const aException: Exception): string;
+begin
+  if aException <> nil then
+  begin
+    result := aException.ClassName;
+    if aException.Message <> '' then
+      result := result + ': "' + aException.Message + '"';
+  end
+  else
+    result := 'nil exception'
 end;
 
 function GetStackTraceText: string;
