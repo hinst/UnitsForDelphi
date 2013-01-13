@@ -4,32 +4,36 @@ interface
 
 uses
   SysUtils,
-  StrUtils,
-  Classes;
+  Classes,
 
-function StreamToText(const aStream: TStream): string; overload;
+  UAdditionalTypes,
+  UAdditionalExceptions;
 
-procedure StreamRewind(const aStream: TStream); overload;
-
-procedure RemoveTrailing(var s: String; const aTrailing: String); overload;
-
-procedure ReverseWord(var aWord: word); overload;
+function StreamToText(const aStream: TStream; const aRewind: boolean): string;
+procedure Rewind(const aStream: TStream); overload;
+function GetRemainingSize(const aStream: TStream): Int64; overload;
+procedure ReverseWord(var aWord: Word); overload;
 
 implementation
 
-function StreamToText(const aStream: TStream): string;
+function StreamToTextInternal(const aStream: TStream; const aRewind: boolean): string;
 var
   x: byte;
   readResult: integer;
-  once: boolean;
 begin
   if aStream = nil then
   begin
-    result := 'nil$TREAM';
+    result := 'nil';
     exit;
   end;
-  result := '$';
-  once := false;
+  if aStream.Size = 0 then
+  begin
+    result := 'empty';
+    exit;
+  end;
+  if aRewind then
+    Rewind(aStream);
+  result := '';
   repeat
     readResult := aStream.Read(x, 1);
     if readResult < 1 then
@@ -37,25 +41,36 @@ begin
       break;
     end;
     result := result + IntToHex(x, 2) + ' ';
-    once := true;
   until false;
-  if once then
-    Delete(result, Length(result), 1);
-  result := result + '$';
+  result := Trim(result);
 end;
 
-procedure StreamRewind(const aStream: TStream);
+function StreamToTextSafe(const aStream: TStream; const aRewind: boolean): string;
 begin
+  try
+    result := StreamToTextInternal(aStream, aRewind);
+  except
+    on e: Exception do
+    begin
+      result := 'Exception while reading stream: ' + e.ClassName + ' "' + e.Message + '"';
+    end;
+  end;
+end;
+
+function StreamToText(const aStream: TStream; const aRewind: boolean): string;
+begin
+  result := StreamToTextSafe(aStream, aRewind);
+end;
+
+procedure Rewind(const aStream: TStream);
+begin
+  AssertAssigned(aStream, 'aStream', TVariableType.Argument);
   aStream.Seek(0, soBeginning);
 end;
 
-procedure RemoveTrailing(var s: String; const aTrailing: String);
-var
-  trailing: string;
+function GetRemainingSize(const aStream: TStream): int64;
 begin
-  trailing := RightStr(s, length(aTrailing));
-  if trailing = aTrailing then
-    s := LeftStr(s, length(s) - length(aTrailing));
+  result := aStream.Size - aStream.Position;
 end;
 
 procedure ReverseWord(var aWord: Word);

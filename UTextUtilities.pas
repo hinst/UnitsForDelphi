@@ -6,6 +6,7 @@ uses
   Types,
   SysUtils,
   Classes,
+  StrUtils,
 
   JclStrings,
 
@@ -25,7 +26,13 @@ function GenerateRandomText(const aCountOfWords: integer): string;
 function CreateExtractStrings(const aSource: TStrings; const aCondition: TCheckStringMethod)
   : TStrings;
 
+function SeparatedStrings(const aSeparator: string; const a: array of string): string;
+
 function SpacedStrings(const a: array of string): string;
+
+procedure RemoveTrailing(var s: String; const aTrailing: String); inline;
+
+procedure AppendSpaced(var s: string; const x: string); 
 
 
 implementation
@@ -122,7 +129,7 @@ begin
   end;
 end;
 
-function SpacedStrings(const a: array of string): string;
+function SeparatedStrings(const aSeparator: string; const a: array of string): string;
 var
   i: integer;
   r: TStringBuilder;
@@ -135,11 +142,35 @@ begin
   for i := 1 to length(a) - 1 do
     if a[i] <> '' then
     begin
-      r.Append(' ');
+      r.Append(aSeparator);
       r.Append(a[i]);
     end;
   result := r.ToString;
   r.Free;
+end;
+
+function SpacedStrings(const a: array of string): string;
+begin
+  result := SeparatedStrings(' ', a);
+end;
+
+procedure RemoveTrailing(var s: String; const aTrailing: String);
+var
+  trailing: string;
+begin
+  trailing := RightStr(s, length(aTrailing));
+  if trailing = aTrailing then
+    s := LeftStr(s, length(s) - length(aTrailing));
+end;
+
+procedure AppendSpaced(var s: string; const x: string);
+begin
+  if x <> '' then
+  begin
+    if s <> '' then
+      s := s + ' ';
+    s := s + x;
+  end;
 end;
 
 end.
