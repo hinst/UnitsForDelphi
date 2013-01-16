@@ -61,6 +61,8 @@ type
     Duplicate: TClass read FClass;
   end;
 
+procedure AssertCondition(const aCondition: boolean);
+
 procedure AssertType(const aObject: TObject; const aType: TClass);
 
 procedure AssertAssigned(const aPointer: pointer; const aVariableName: string;
@@ -131,6 +133,13 @@ begin
   Message := 'Duplicate class: ' + Duplicate.ClassName;
 end;
 
+
+procedure AssertCondition(const aCondition: boolean);
+begin
+  if not aCondition
+  then
+    raise EAssertionFailed.Create('Condition assertion failed');
+end;
 
 procedure AssertType(const aObject: TObject; const aType: TClass);
 begin
